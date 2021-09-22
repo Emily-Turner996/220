@@ -24,7 +24,7 @@ def main():
     # Loop
     for i in range(number):
         # INPUT VALUES
-        value = eval(input("enter value "))  # get the user input (and will repeat n times)
+        value = eval(input("enter value: "))  # get the user input (and will repeat n times)
 
         # CALCULATIONS
         # RMS Average
