@@ -12,7 +12,7 @@
 def break_down_lines(sublist, name_number, first_w, first_g):  # make w & g lists and set name
     name_list = sublist[0:name_number]  # name in a list
     name = " ".join(name_list)  # name as a string
-    name = name.replace(":", "'s grade: ")  # make outputting the text easier
+    name = name.replace(":", "'s average: ")  # make outputting the text easier
     w_list = sublist[first_w::2]  # list of weights
     w_list = list(map(int, w_list))  # convert w list to ints
     g_list = sublist[first_g::2]  # list of grades
@@ -44,32 +44,30 @@ def weighted_average(in_file_name, out_file_name):  # required by directions
         # DECISION STRUCTURE - determine need for error message
         weight_total = sum(w_list)
         if weight_total < 100:
-            student_result = "Error: the weights are less than 100"  # setting result variable
+            student_result = "Error: The weights are less than 100."  # setting result variable
         elif weight_total > 100:
-            student_result = "Error: the weights are more than 100"  # setting result variable
+            student_result = "Error: The weights are more than 100."  # setting result variable
         else:
             # COMPUTE STUDENT AVG
             product_list = [a * b for a, b in zip(w_list, g_list)]  # multiply w and g lists
             sum_of_products = sum(product_list)  # add all items in product list together
             student_avg = sum_of_products / 100  # divide by 100
-            student_avg = round(student_avg, 1)  # correct decimal places
-            student_result = str(student_avg)  # setting result variable and changing to string
+            # student_avg = round(student_avg, 1)  # correct decimal places
+            student_result = str(round(student_avg, 1))  # setting result variable and changing to string
 
             class_grades.append(student_avg)  # updates list of student averages
 
         # OUTPUT STUDENT AVG
-        out_file.write(name)  # print name
-        out_file.write(student_result)  # print student's grade
-        out_file.write("\n")  # print on different lines
+        print(name + student_result, file=out_file)
 
     # COMPUTE CLASS AVG
     class_sum = sum(class_grades)
     class_avg = class_sum / len(class_grades)
+    class_avg = round(class_avg, 1)
     class_avg = str(class_avg)  # change to string so can write
 
     # OUTPUT CLASS AVG
-    out_file.write("\nclass average: ")
-    out_file.write(class_avg)
+    print("Class average:", class_avg, file=out_file)
 
     # Close Files
     in_file.close()
