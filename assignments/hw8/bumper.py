@@ -184,7 +184,7 @@ def main():
         # MAKE MOVEMENT
         ball_1.move(b1_x, b1_y)
         ball_2.move(b2_x, b2_y)
-        time.sleep(.05)
+        time.sleep(.08)
 
         # CHECK IF HIT ANYTHING
         # Ball1-to-wall hit:
