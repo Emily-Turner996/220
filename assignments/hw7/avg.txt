@@ -1,0 +1,5 @@
+Lucky Peyton Davidson's average: 18.3
+Briana Flaherty's average: 62.0
+k nj's average: Error: The weights are more than 100.
+k sj's average: Error: The weights are less than 100.
+Class average: 40.1
