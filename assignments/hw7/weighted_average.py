@@ -10,6 +10,9 @@
 
 
 def break_down_lines(sublist, name_number, first_w, first_g):  # make w & g lists and set name
+    """
+    make lists for weight and grades and set the name
+    """
     name_list = sublist[0:name_number]  # name in a list
     name = " ".join(name_list)  # name as a string
     name = name.replace(":", "'s average: ")  # make outputting the text easier
@@ -21,19 +24,23 @@ def break_down_lines(sublist, name_number, first_w, first_g):  # make w & g list
 
 
 def weighted_average(in_file_name, out_file_name):  # required by directions
+    """
+    opens files, formats input info, computes student and class average, outputs to
+    external file, then closes both files
+    """
     # Open Files
     in_file = open(in_file_name, 'r')
     out_file = open(out_file_name, 'w')
 
     content = in_file.readlines()  # to turn input file into list of lines
-    li = [x.strip() for x in content]  # remove whitespace characters like \n
+    stripped_list = [x.strip() for x in content]  # remove whitespace characters like \n
 
     class_grades = []  # default value for a list to be updated w/ ea. student
 
     # COMPUTE STUDENT AVG
-    for x in li:
+    for each_value in stripped_list:
         # split them up
-        sublist = x.split()  # make list for each person
+        sublist = each_value.split()  # make list for each person
 
         # get name, w_list, and g_list
         try:  # for people with 2 names
@@ -53,7 +60,7 @@ def weighted_average(in_file_name, out_file_name):  # required by directions
             sum_of_products = sum(product_list)  # add all items in product list together
             student_avg = sum_of_products / 100  # divide by 100
             # student_avg = round(student_avg, 1)  # correct decimal places
-            student_result = str(round(student_avg, 1))  # setting result variable and changing to string
+            student_result = str(round(student_avg, 1))  # set result variable & change to string
 
             class_grades.append(student_avg)  # updates list of student averages
 
@@ -75,6 +82,9 @@ def weighted_average(in_file_name, out_file_name):  # required by directions
 
 
 def main():
+    """
+    runs the program
+    """
     # run required function
     weighted_average("grades.txt", "avg.txt")
 
