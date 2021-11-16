@@ -3,7 +3,8 @@ create a button object to be used in three_door_game.py
 Object will take shape and a label (string)
 Will draw a rectangle with text inside
 """
-from graphics import *  # GraphWin, Point, Rectangle
+from graphics import Text
+# from graphics import GraphWin, Point, Rectangle, Text
 
 
 class Button:
@@ -12,40 +13,41 @@ class Button:
     """
 
     def __init__(self, shape, label):  # initializes shape and text
-        self.shape = shape  # this may or may not be correct, just trying to have something
-        # get the centerpoint of rectangle here so it can be the centerpoint of self.text
+        self.shape = shape
+        # get the center of rectangle here so it can be the center of self.text:
         center_point = shape.getCenter()
-        self.text = Text(center_point, label)  # might be correct, just trying to have smthng
-        # LABEL is a STRING (input a string, not text object!) used to create the Text object
+        self.text = Text(center_point, label)
 
     def get_label(self):
+        """
+        returns the text of the button in a string
+        """
         text_object = self.text
-        text_string = text_object.getText()  # get the text from the text object
-        return text_string  # idk what exactly gets returned, ...
-        # ... if returned variable needs to be smthng particular
-        # returns string.
-        # returns the text of the button.
-    # think this ^ is related to getText() and that returning...
-    # ...self.text will mess it up, might need some string variable instead
+        text_string = text_object.getText()  # get text from the text object
+        return text_string
 
-    def draw(self, win):  # might bring color_button & set_label in this. ...
-        # ... Mayb not. Mayb another one to combine them idk
-        # returns void.
-        # draws the button with text on it
+    def draw(self, win):
+        """
+        draws the button with text on it, returns void
+        """
         door = self.shape
         label = self.text
         door.draw(win)
         label.draw(win)
 
     def undraw(self):
-        # returns void.
-        # undraws button as well as the associated label.
+        """
+        undraws button as well as the associated label, returns void
+        """
         door = self.shape
         label = self.text
         door.undraw()
         label.undraw()
 
-    def __get_corners(self):  # since getP1 and getP2 don't want to work
+    def __get_corners(self):
+        """
+        determines x and y coordinates of the rectangle's corner points
+        """
         rectangle = self.shape
         x_1 = rectangle.getP1().getX()
         y_1 = rectangle.getP1().getY()
@@ -53,9 +55,19 @@ class Button:
         y_2 = rectangle.getP2().getY()
         return x_1, y_1, x_2, y_2
 
+    def get_center(self):
+        """
+        Gets the center point of the rectangle
+        """
+        rectangle = self.shape
+        center_point = rectangle.getCenter
+        return center_point
+
     def is_clicked(self, click_point):
-        # returns bool.
-        # true if the point is within the button (including the edges).
+        """
+        will return True if the point is within the button (including the edges)
+        returns bool
+        """
         mouse_x = click_point.getX()
         mouse_y = click_point.getY()
         x_1, y_1, x_2, y_2 = self.__get_corners()
@@ -64,12 +76,14 @@ class Button:
         return button_hit
 
     def color_button(self, color):
-        # returns void.
-        # color the button with color.
-        self.shape.setFill(color)  # ? just a random vague idea, might b completely off
+        """
+        color the button with color, returns void
+        """
+        self.shape.setFill(color)
 
-    def set_label(self, label):  # still don't really get the point of this one, not yet
-        # returns void.
-        # update the button text.
-        center_point = self.shape.getCenter()  # unless need self.shape equal to smthng b4 this
-        self.text = Text(center_point, label)  # may or may not be it
+    def set_label(self, label):
+        """
+        Updates the button text, returns void.
+        """
+        center_point = self.shape.getCenter()
+        self.text = Text(center_point, label)
