@@ -7,9 +7,9 @@
     Certification of Authenticity:
     I certify that this assignment is entirely my own work.
 """
+from random import randint
 from graphics import GraphWin, Rectangle, Point, Text
 from button import Button
-from random import randint
 
 
 def set_up_door(p1x, p1y, p2x, p2y, label):
@@ -89,7 +89,9 @@ def main():
     draw_messages(message1, message2, win)  # draw both messages at once
 
     # set door clicked initial (boolean) value
-    button_hit = False
+    button_hit = False  # necessary for while loop
+    button1_hit = False  # initialize before the loop, keep it from having a fit in 106
+    button2_hit = False
 
     while not button_hit:  # while no doors are clicked
         click_point = win.getMouse()  # pause until clicks anywhere, stores point
